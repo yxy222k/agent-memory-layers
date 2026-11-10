@@ -1,0 +1,13 @@
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 整理环节的中间产物（patch 与日志不入库，变更靠 commit 记录）
+*.patch
+change-log.md

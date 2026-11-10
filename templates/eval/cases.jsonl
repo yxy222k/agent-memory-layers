@@ -1,0 +1,5 @@
+{"id":"X-001","question":"（陷阱题：表面像 A，实际是 B）","must_hit":["____","____"],"source":"ticket-____","graded":null}
+{"id":"X-002","question":"（跨版本问题：升级后旧做法失效）","must_hit":["先确认版本","____"],"source":"____","graded":null}
+{"id":"X-003","question":"（排查顺序题：先查什么，不要先查什么）","must_hit":["____"],"source":"____","graded":null}
+{"id":"X-004","question":"（能力边界题：能不能做到 X）","must_hit":["____"],"source":"____","graded":null}
+{"id":"X-005","question":"（口径题：同一个词在两处含义不同）","must_hit":["____"],"source":"____","graded":null}
