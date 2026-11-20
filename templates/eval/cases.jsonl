@@ -1,5 +1,5 @@
-{"id":"X-001","question":"（陷阱题：表面像 A，实际是 B）","must_hit":["____","____"],"source":"ticket-____","graded":null}
-{"id":"X-002","question":"（跨版本问题：升级后旧做法失效）","must_hit":["先确认版本","____"],"source":"____","graded":null}
-{"id":"X-003","question":"（排查顺序题：先查什么，不要先查什么）","must_hit":["____"],"source":"____","graded":null}
-{"id":"X-004","question":"（能力边界题：能不能做到 X）","must_hit":["____"],"source":"____","graded":null}
-{"id":"X-005","question":"（口径题：同一个词在两处含义不同）","must_hit":["____"],"source":"____","graded":null}
+{"id":"EVAL-001","category":"trap","question":"干涉解算相位每隔数分钟出现慢漂，表面像解算滤波发散，但在低驱动电流档尤为明显，先查什么？","must_hit":["先确认软件版本与光源SN","查SLD光源低电流中心波长漂移基线","不要先改解算滤波参数"],"source":"tr-20261112-001","graded":null}
+{"id":"EVAL-002","category":"version_drift","question":"升级到新版本固件后，沿用上一套探头配置的默认补偿表会出现什么后果？","must_hit":["确认当前软件版本与探头SN是否匹配","旧配置补偿表在换件后会放大误差"],"source":"ticket-____","graded":null}
+{"id":"EVAL-003","category":"hardware_safety","question":"为提高弱反射样品信噪比，准备把 #SPEC-01 光谱仪积分时间直接拉满并调高光源电流，需要做什么前置检查？","must_hit":["先查 #SPEC-01 饱和阈值与瞬时过载阈值","按样品测量SOP留存光路照与上位机截图"],"source":"asset-SPEC-001","graded":null}
+{"id":"EVAL-004","category":"data_skill","question":"需要连续采集 10 分钟高频原始干涉光谱用于排查偶发跳点，数据存什么格式？为什么不能存 CSV？","must_hit":["存 .hdf5 格式","禁止 .csv（体积膨胀且浮点截断丢失相位精度/缺硬件元数据）","同步写 transcripts 伴生索引卡"],"source":"3_skills/data-schema/SKILL.md","graded":null}
+{"id":"EVAL-005","category":"negative_result","question":"针对边缘阶跃伪影，团队有人提议加大滑动均值窗口平滑掉，这个方向值得排期做实验吗？","must_hit":["引用历史已证伪负结果（refuted）","说明会抹平真实阶跃特征，避免重复无效实验"],"source":"anom-____","graded":null}
