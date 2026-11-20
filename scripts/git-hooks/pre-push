@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Pre-push safety hook: blocks leaking private memory instances or plaintext secrets.
+set -eu
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+if command -v py >/dev/null 2>&1; then
+  exec py -3 "$REPO_ROOT/scripts/aml.py" check-push --repo "$REPO_ROOT" --remote-name "${1:-}" --remote-url "${2:-}"
+elif command -v python3 >/dev/null 2>&1; then
+  exec python3 "$REPO_ROOT/scripts/aml.py" check-push --repo "$REPO_ROOT" --remote-name "${1:-}" --remote-url "${2:-}"
+else
+  exec python "$REPO_ROOT/scripts/aml.py" check-push --repo "$REPO_ROOT" --remote-name "${1:-}" --remote-url "${2:-}"
+fi

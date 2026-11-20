@@ -1,4 +1,4 @@
-# 编辑器与系统
+# 编辑器与系统 / Editors & OS
 .vscode/
 .idea/
 *.swp
@@ -6,12 +6,16 @@
 Thumbs.db
 desktop.ini
 
-# 本地环境与敏感配置（设备IP映射、凭证引用配置绝不入库）
+# Python 字节码缓存 / Bytecode
+__pycache__/
+*.py[cod]
+
+# 本地环境与敏感配置（地址别名、凭证引用绝不入库）
 .env
 .env.*
 *.local.md
 
-# 离线蒸馏（Dreaming）的临时工作树与待审中间产物
+# 离线蒸馏（Dreaming）的临时工作树与中间产物
 .dream-worktree/
 *.patch
 change-log.md

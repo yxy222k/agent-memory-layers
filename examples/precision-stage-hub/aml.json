@@ -1,0 +1,15 @@
+{
+  "protocol_version": "3.0",
+  "mode": "hub",
+  "private_instance": false,
+  "budgets": {
+    "control_max_kb": 4,
+    "memory_max_lines": 200,
+    "memory_max_kb": 25,
+    "nav_compression_max": 0.30,
+    "nav_compression_min_base_bytes": 4096
+  },
+  "workspace_routes": {
+    "~/work/motion-stage-fw": "motion-stage"
+  }
+}

@@ -1,0 +1,5 @@
+{"id":"EVAL-001","category":"trap","question":"闭环控制稳态误差在启用节能供电档后出现周期性微幅抖动，表面极像 PID 微分增益过高发散，第一步该核查什么？","must_hit":["先核实当前固件版本与在役传感器/供电资产ID","核查开关电源纹波与传感器供电轨基线，勿盲目先改PID参数"],"source":"tr-____","graded":null}
+{"id":"EVAL-002","category":"version_drift","question":"更换同型号新批次传感器探头或升级主控固件后，直接沿用上一支探头的默认非线性补偿表会导致什么风险？","must_hit":["核对补偿表 applies_to 绑定的资产ID与版本区间","跨个体沿用单件补偿表可能反向放大系统误差"],"source":"asset-____","graded":null}
+{"id":"EVAL-003","category":"hardware_safety","question":"为提升弱信号信噪比，准备直接把激励功率与采集增益拉到上限进行测试，执行前必须完成哪些检查？","must_hit":["查阅 2_calibration/assets 中对应资产的饱和阈值与瞬时过载硬极限","按标定测量SOP留存工装照片、界面截图与二进制伴生卡"],"source":"sop-____","graded":null}
+{"id":"EVAL-004","category":"data_skill","question":"需要连续抓取 10 分钟 20 kHz 多通道同步原始波形排查偶发毛刺，应存什么格式？为什么禁止存 CSV？","must_hit":["使用 .hdf5 / .parquet / .mcap 等二进制结构化格式","禁止 .csv（体积剧增、十进制文本转换截断微弱残差精度且丢失硬件头元数据）","在 transcripts 建立伴生索引卡"],"source":"3_skills/data-schema/SKILL.md","graded":null}
+{"id":"EVAL-005","category":"negative_result","question":"针对反馈环路的高频伪抖动，有人提议直接把反馈滑动均值窗口扩大 8 倍滤除，是否值得排期重测？","must_hit":["引用历史已证伪负结果（refuted）","指出大窗口平滑无法消除混叠偏置且引入相位滞后恶化阶跃响应，避免重复无效实验"],"source":"anom-____","graded":null}

@@ -1,0 +1,5 @@
+{"id":"EVAL-001","category":"trap","question":"motion-stage 升级 v2.4.0 后静默保位出现 38 Hz 周期微抖动，加减速段正常，先查什么？","must_hit":["查模拟供电轨是否进入 DCDC_ECO_PFM 轻载跳频模式","确认 20kHz 采样跨奈奎斯特混叠","勿先改伺服PID参数"],"source":"anom-20261018-001","graded":null}
+{"id":"EVAL-002","category":"negative_result","question":"能否通过把位置反馈滑动均值窗口从 4 点扩到 32 点来压掉 38 Hz 保位抖动？","must_hit":["引用已证伪负结果 refuted","无法消除混叠基波且引入 1.4ms 相位滞后，导致阶跃超调恶化至 18%"],"source":"anom-20261018-001","graded":null}
+{"id":"EVAL-003","category":"hardware_safety","question":"调试 #STAGE-X02 高速大跨度阶跃时准备把驱动器峰值限流改成 6.5 A，是否允许？","must_hit":["严禁执行，超过 #STAGE-X02 瞬时过流/退磁硬极限 6.2 A","短时峰值上限为 5.5 A (<=200 ms)"],"source":"asset-STAGE-002","graded":null}
+{"id":"EVAL-004","category":"intake_sop","question":"新一批 SENS-24B 位移传感模块入库标定时，除了线性度还必须测什么供电指标？","must_hit":["按 sensor-rail-intake 规程测 10Hz-500kHz 全工况供电轨频谱纹波 (<0.5 mVpp)","留存工装照片、同屏截图与 .hdf5 伴生卡"],"source":"sop-cal-sens","graded":null}
+{"id":"EVAL-005","category":"tenant_isolation","question":"给 site-east 现场出验收报告时，“稳态定位抖动”应该按 RMS 还是峰峰值计算？","must_hit":["按 site-east 现场口径使用 10s 窗口峰峰值 (p-p <= 0.30 um)，而非实验室默认 RMS"],"source":"tenants/site-east/AGENTS.md","graded":null}

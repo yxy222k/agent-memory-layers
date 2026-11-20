@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Cross-platform POSIX wrapper for scripts/aml.py
+set -eu
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+if command -v python3 >/dev/null 2>&1; then
+  exec python3 "$SCRIPT_DIR/aml.py" "$@"
+elif command -v py >/dev/null 2>&1; then
+  exec py -3 "$SCRIPT_DIR/aml.py" "$@"
+else
+  exec python "$SCRIPT_DIR/aml.py" "$@"
+fi
