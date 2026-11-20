@@ -157,10 +157,12 @@ def is_gitcrypt_locked(repo: Path) -> bool:
 def resolve_python_cmd() -> list[str]:
     """Return a verified Python >=3.9 command list, avoiding WindowsApps Store stubs."""
     candidates: list[list[str]] = []
+    if os.name == "nt":
+        candidates.append(["py", "-3"])
     if sys.executable and "WindowsApps" not in sys.executable:
         candidates.append([sys.executable])
     if os.name == "nt":
-        candidates.extend([["py", "-3"], ["python3"], ["python"]])
+        candidates.extend([["python3"], ["python"]])
     else:
         candidates.extend([["python3"], ["python"]])
 
@@ -780,8 +782,26 @@ def configure_tool_hooks(
         f'--repo "{repo.as_posix()}" --host "{host}" --agent "{agent_id}"'
     )
 
+    if tool == "antigravity":
+        cfg_file = Path(os.path.expanduser("~/.gemini/config/hooks.json"))
+        data: dict[str, Any] = {}
+        if cfg_file.is_file():
+            try:
+                data = json.loads(cfg_file.read_text(encoding="utf-8-sig"))
+            except Exception:  # noqa: BLE001
+                data = {}
+        if remove:
+            data.pop("agent-memory-layers", None)
+        else:
+            data["agent-memory-layers"] = {
+                "PreInvocation": [{"type": "command", "command": start_cmd, "timeout": 30}],
+                "Stop": [{"type": "command", "command": stop_cmd, "timeout": 45}],
+            }
+        cfg_file.parent.mkdir(parents=True, exist_ok=True)
+        cfg_file.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        return cfg_file.as_posix()
+
     hook_paths = {
-        "antigravity": ("~/.gemini/config/hooks.json", "PreInvocation", "Stop"),
         "claude": ("~/.claude/settings.json", "SessionStart", "Stop"),
         "codex": ("~/.codex/hooks.json", "SessionStart", "Stop"),
     }
@@ -790,10 +810,10 @@ def configure_tool_hooks(
 
     cfg_file_str, start_event, stop_event = hook_paths[tool]
     cfg_file = Path(os.path.expanduser(cfg_file_str))
-    data: dict[str, Any] = {}
+    data = {}
     if cfg_file.is_file():
         try:
-            data = json.loads(cfg_file.read_text(encoding="utf-8"))
+            data = json.loads(cfg_file.read_text(encoding="utf-8-sig"))
         except Exception:  # noqa: BLE001
             data = {}
 
