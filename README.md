@@ -7,6 +7,8 @@
 
 A zero-dependency Markdown + Python 3 stdlib memory kit. No server, no database, no vector store — one Git repository powers a single product repo (`standalone`) or your entire multi-machine, multi-agent engineering fleet (`hub`).
 
+> **Design Provenance**: The horizontal 4-domain taxonomy originated from real R&D notes across three semiconductor optical metrology projects (NIR film-thickness gauge, TSV metrology, and laser interferometry), then merged with the vertical consolidation stages (`transcripts → notes → wiki → injected context`), one-agent-per-page concurrency rule, and offline `dreaming` ablation methodology described in Anthropic's [*The components of agent memory*](https://www.anthropic.com/research/components-of-agent-memory).
+
 ## Why Flat Agent Memory & Single-Axis Compression Break Down
 
 1. **Tool-bound flat memory** locks your rules and lessons inside one laptop or one vendor (Claude Code, Codex, Antigravity, etc.) and mixes personal preferences, host compiler paths, and hardware calibration values in the same bucket.
@@ -101,6 +103,8 @@ python3 -m unittest discover -s tests -v
 > 面向软硬件协同、装备与复杂研发系统的统一工程记忆架构：**跨机多工具控制面 × 正交双轴知识内核（业务四域 × 加工四阶）、多机零冲突自动同步、排故四向反哺、离线双闸门蒸馏**。
 
 纯 Markdown + Python 3 标准库实现（零第三方依赖）。不需要服务端、数据库或向量库——一个 Git 仓库既可嵌入单个项目（`standalone`），也可作为统管你名下所有开发机、工控机、云服务器与各类 AI 客户端的全局记忆中枢（`hub`）。
+
+> **设计溯源**：横轴「业务四域」源自本人在三个半导体量检测装备项目（近红外膜厚仪、TSV 测量、激光干涉仪）中的一线研发笔记沉淀；随后结合 Anthropic 技术研究《[*The components of agent memory*](https://www.anthropic.com/research/components-of-agent-memory)》提出的分层表征（`原始流水 → 笔记 → Wiki → 常驻注入`）、多智能体一人一页防覆写及离线 `dreaming` 消融评测思想，整合成正交双轴治理内核并实际回用至上述三个项目。
 
 ## 为什么扁平 Agent 记忆与单维浓缩都不够用
 
