@@ -76,6 +76,10 @@ python3 scripts/aml.py check --repo examples/precision-stage-hub
 python3 scripts/aml.py start --repo examples/precision-stage-hub --host lab-bench-01 --agent demo
 python3 scripts/aml.py search --repo examples/precision-stage-hub --product motion-stage --tenant site-east "验收"
 python3 scripts/aml.py dream stats --repo examples/precision-stage-hub
+python3 scripts/aml.py eval \
+  --cases examples/precision-stage-hub/products/motion-stage/eval/cases.jsonl \
+  --responses examples/precision-stage-hub/products/motion-stage/eval/sample_ablation_responses.jsonl -v
+python3 -m unittest discover -s tests -v
 ```
 
 ## Documentation
@@ -169,6 +173,10 @@ python3 scripts/aml.py check --repo examples/precision-stage-hub
 python3 scripts/aml.py start --repo examples/precision-stage-hub --host lab-bench-01 --agent demo
 python3 scripts/aml.py search --repo examples/precision-stage-hub --product motion-stage --tenant site-east "验收"
 python3 scripts/aml.py dream stats --repo examples/precision-stage-hub
+python3 scripts/aml.py eval \
+  --cases examples/precision-stage-hub/products/motion-stage/eval/cases.jsonl \
+  --responses examples/precision-stage-hub/products/motion-stage/eval/sample_ablation_responses.jsonl -v
+python3 -m unittest discover -s tests -v
 ```
 
 ---

@@ -17,6 +17,7 @@ Subcommands:
   dream        Manage dual-gate offline consolidation worktree, triage & citation stats
   check        Zero-token mechanical validator for budgets, schemas, links, stale & secrets
   check-push   Git pre-push guard against leaking private instances to public remotes
+  eval         Deterministic rubric & 5-arm ablation scorer for eval/cases.jsonl
 """
 
 from __future__ import annotations
@@ -1382,6 +1383,193 @@ def cmd_dream(args: argparse.Namespace) -> int:
 
 
 # ---------------------------------------------------------------------------
+# Subcommand: eval (Deterministic Rubric & Ablation Scorer)
+# ---------------------------------------------------------------------------
+
+
+def _clause_matches(clause: str, text: str) -> bool:
+    """Match a rubric anchor clause against response text.
+
+    Supports:
+      - `re:<pattern>` for explicit case-insensitive regular expressions
+      - `<alt1>|<alt2>` pipe-separated lexical alternatives to avoid false negatives
+        from surface wording differences while keeping grading deterministic.
+    """
+    spec = clause.strip()
+    if not spec:
+        return True
+    if spec.startswith("re:"):
+        return bool(re.search(spec[3:], text, flags=re.IGNORECASE))
+    norm_text = re.sub(r"\s+", " ", text).lower()
+    for alt in spec.split("|"):
+        token = re.sub(r"\s+", " ", alt.strip()).lower()
+        if token and token in norm_text:
+            return True
+    return False
+
+
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for lineno, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{path}:{lineno}: invalid JSON ({exc})") from exc
+        if not isinstance(obj, dict):
+            raise ValueError(f"{path}:{lineno}: expected JSON object")
+        rows.append(obj)
+    return rows
+
+
+def grade_response(case: dict[str, Any], response_text: str) -> dict[str, Any]:
+    """Grade one model response against a case definition with hard-gate priority."""
+    must_hit: list[str] = list(case.get("must_hit_anchors") or case.get("must_hit") or [])
+    must_not_hit: list[str] = list(case.get("must_not_hit") or [])
+
+    matched: list[str] = []
+    missed: list[str] = []
+    for clause in must_hit:
+        if _clause_matches(clause, response_text):
+            matched.append(clause)
+        else:
+            missed.append(clause)
+
+    forbidden_hits: list[str] = [
+        clause for clause in must_not_hit if _clause_matches(clause, response_text)
+    ]
+
+    raw_coverage = (len(matched) / len(must_hit)) if must_hit else 1.0
+    if forbidden_hits:
+        # Hard gate before weighted scoring: safety / refuted violations score 0.0
+        passed = False
+        score = 0.0
+        outcome = "HARD_GATE_VIOLATION"
+    elif not missed:
+        passed = True
+        score = 1.0
+        outcome = "PASS"
+    else:
+        passed = False
+        score = round(raw_coverage, 4)
+        outcome = "PARTIAL" if matched else "MISS"
+
+    return {
+        "id": case.get("id", ""),
+        "category": case.get("category", "general"),
+        "passed": passed,
+        "score": score,
+        "raw_coverage": round(raw_coverage, 4),
+        "outcome": outcome,
+        "matched": matched,
+        "missed": missed,
+        "forbidden_hits": forbidden_hits,
+    }
+
+
+def evaluate_ablation(
+    cases: list[dict[str, Any]],
+    responses: list[dict[str, Any]],
+) -> dict[str, Any]:
+    case_map = {str(c["id"]): c for c in cases if "id" in c}
+    arms: dict[str, list[dict[str, Any]]] = {}
+
+    for row in responses:
+        cid = str(row.get("id") or "")
+        if cid not in case_map:
+            continue
+        arm = str(row.get("arm") or "default")
+        graded = grade_response(case_map[cid], str(row.get("response") or ""))
+        if "tokens" in row and row["tokens"] is not None:
+            graded["tokens"] = int(row["tokens"])
+        if "turns" in row and row["turns"] is not None:
+            graded["turns"] = int(row["turns"])
+        arms.setdefault(arm, []).append(graded)
+
+    summary: dict[str, Any] = {}
+    for arm, items in sorted(arms.items()):
+        n = len(items)
+        passes = sum(1 for it in items if it["passed"])
+        violations = sum(1 for it in items if it["outcome"] == "HARD_GATE_VIOLATION")
+        mean_score = sum(it["score"] for it in items) / n if n else 0.0
+        tok_vals = [it["tokens"] for it in items if "tokens" in it]
+        turn_vals = [it["turns"] for it in items if "turns" in it]
+        summary[arm] = {
+            "cases_evaluated": n,
+            "cases_total": len(case_map),
+            "pass_count": passes,
+            "pass_rate": round(passes / n, 4) if n else 0.0,
+            "mean_score": round(mean_score, 4),
+            "hard_gate_violations": violations,
+            "mean_tokens": round(sum(tok_vals) / len(tok_vals), 1) if tok_vals else None,
+            "mean_turns": round(sum(turn_vals) / len(turn_vals), 2) if turn_vals else None,
+            "results": items,
+        }
+
+    return {"total_cases": len(case_map), "arms": summary}
+
+
+def cmd_eval(args: argparse.Namespace) -> int:
+    cases_path = Path(args.cases).resolve()
+    resp_path = Path(args.responses).resolve()
+    if not cases_path.is_file():
+        sys.stderr.write(f"[aml] cases file not found: {cases_path}\n")
+        return 1
+    if not resp_path.is_file():
+        sys.stderr.write(f"[aml] responses file not found: {resp_path}\n")
+        return 1
+
+    try:
+        cases = load_jsonl(cases_path)
+        responses = load_jsonl(resp_path)
+    except ValueError as exc:
+        sys.stderr.write(f"[aml] {exc}\n")
+        return 1
+
+    report = evaluate_ablation(cases, responses)
+    if args.json_out:
+        out_path = Path(args.json_out).resolve()
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    print(f"[aml] Ablation Evaluation ({report['total_cases']} benchmark cases)")
+    print(f"{'Arm':<10} {'Pass':<10} {'PassRate':<10} {'MeanScore':<11} {'GateViol':<10} {'AvgTurns':<10} {'AvgTokens':<10}")
+    print("-" * 74)
+    for arm, stats in report["arms"].items():
+        pass_str = f"{stats['pass_count']}/{stats['cases_evaluated']}"
+        rate_str = f"{stats['pass_rate'] * 100:.1f}%"
+        score_str = f"{stats['mean_score']:.3f}"
+        turns_str = f"{stats['mean_turns']:.1f}" if stats["mean_turns"] is not None else "-"
+        toks_str = f"{stats['mean_tokens']:.0f}" if stats["mean_tokens"] is not None else "-"
+        print(
+            f"{arm:<10} {pass_str:<10} {rate_str:<10} {score_str:<11} "
+            f"{stats['hard_gate_violations']:<10} {turns_str:<10} {toks_str:<10}"
+        )
+        if args.verbose:
+            for item in stats["results"]:
+                tag = item["outcome"]
+                detail = ""
+                if item["forbidden_hits"]:
+                    detail = f" forbidden={item['forbidden_hits']}"
+                elif item["missed"]:
+                    detail = f" missed={item['missed']}"
+                print(f"  - [{tag}] {item['id']} ({item['category']}): score={item['score']:.2f}{detail}")
+
+    if args.min_pass_rate is not None:
+        target_arm = args.require_arm
+        if target_arm:
+            arms_to_check = {target_arm: report["arms"].get(target_arm)}
+        else:
+            arms_to_check = report["arms"]
+        for arm_name, st in arms_to_check.items():
+            if st is None or st["pass_rate"] < args.min_pass_rate or st["hard_gate_violations"] > 0:
+                return 1
+    return 0
+
+
+# ---------------------------------------------------------------------------
 # Argument Parser
 # ---------------------------------------------------------------------------
 
@@ -1474,6 +1662,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_cpush.add_argument("--remote-name", default="")
     p_cpush.add_argument("--remote-url", default="")
     p_cpush.set_defaults(func=cmd_check_push)
+
+    p_eval = sub.add_parser("eval", help="Deterministic rubric & ablation scorer for eval/cases.jsonl")
+    p_eval.add_argument("--cases", required=True, help="Path to benchmark cases.jsonl")
+    p_eval.add_argument("--responses", required=True, help="Path to model responses.jsonl")
+    p_eval.add_argument("--json-out", help="Optional path to write full JSON evaluation report")
+    p_eval.add_argument("--verbose", "-v", action="store_true", help="Print per-case pass/miss/violation details")
+    p_eval.add_argument("--require-arm", help="Arm name to enforce --min-pass-rate against (e.g. C)")
+    p_eval.add_argument("--min-pass-rate", type=float, help="Fail with exit code 1 if pass rate is below threshold")
+    p_eval.set_defaults(func=cmd_eval)
 
     return p
 

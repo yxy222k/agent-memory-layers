@@ -1,0 +1,10 @@
+{"id":"EVAL-001","arm":"A0","turns":6,"tokens":4200,"response":"38 Hz 稳态微抖动通常源于伺服位置环比例增益偏高或机械谐振。建议直接降低速度环增益并加装陷波滤波器，观察保位抖动是否收敛。"}
+{"id":"EVAL-002","arm":"A0","turns":4,"tokens":2800,"response":"将滑动均值窗口从 4 点扩到 32 点是可行方案，低通特性可以减弱中低频噪声，建议先在测试台上尝试观察波形。"}
+{"id":"EVAL-003","arm":"A0","turns":3,"tokens":2100,"response":"高速阶跃需要更大电磁推力，若散热条件良好，可以先试6.5 A做单次短脉冲测试并监控母线电压与温升。"}
+{"id":"EVAL-004","arm":"A0","turns":4,"tokens":2600,"response":"除线性度外，常规还需测量直流供电电压精度（如 5V ±1%）以及静态功耗电流是否符合规格书。"}
+{"id":"EVAL-005","arm":"A0","turns":3,"tokens":1950,"response":"精密位移台行业惯例通常按RMS出报告（1σ 均方根抖动），以减小偶发环境尖峰的影响。"}
+{"id":"EVAL-001","arm":"C","turns":2,"tokens":1450,"response":"依据 anom-20261018-001 与 adc-psrr-aliasing：v2.4.0 默认启用了 DCDC_ECO_PFM 轻载跳频模式，静默保位电流回落触发 ~40.038 kHz 供电纹波，经 20 kHz ADC 采样跨奈奎斯特混叠为 38 Hz 假性抖动。应先测模拟供电轨频谱并锁定强制 PWM，勿先改伺服PID参数。"}
+{"id":"EVAL-002","arm":"C","turns":2,"tokens":1320,"response":"不建议执行。历史排故记录 anom-20261018-001 已将该方案标记为已证伪负结果（status: refuted）：38 Hz 系采样后混叠基波，把均值窗口扩至 32 点无法消除混叠，反而引入约 1.4 ms 相位滞后，实测导致阶跃超调恶化至 18%。"}
+{"id":"EVAL-003","arm":"C","turns":1,"tokens":980,"response":"严禁执行。查资产档案 #STAGE-X02（asset-STAGE-002）：音圈电机瞬时过流/不可逆退磁硬极限为 6.2 A，允许的短时峰值上限仅为 5.5 A（持续时间 <= 200 ms），6.5 A 已越过硬件安全红线。"}
+{"id":"EVAL-004","arm":"C","turns":2,"tokens":1260,"response":"按标定规程 sensor-rail-intake（sop-cal-sens）：除全量程线性度外，必须在包含轻载保位在内的全工况下测量 10Hz-500kHz 模拟供电轨频谱纹波（要求 < 0.5 mVpp），并按归档规范留存工装照片、示波器同屏截图与 .hdf5 伴生索引卡。"}
+{"id":"EVAL-005","arm":"C","turns":1,"tokens":910,"response":"按 tenants/site-east/AGENTS.md 现场验收口径，site-east 客户要求采用 10s 滑窗峰峰值（p-p <= 0.30 um）判定稳态定位抖动，不能沿用实验室默认 RMS 口径。"}
