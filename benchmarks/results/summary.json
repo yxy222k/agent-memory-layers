@@ -1,0 +1,2917 @@
+{
+  "generated_at": "2026-11-24T14:29:59+08:00",
+  "total_cases": 5,
+  "cases_file": "examples/precision-stage-hub/products/motion-stage/eval/cases.jsonl",
+  "models": [
+    {
+      "slug": "claude-opus-5-5-high",
+      "display": "Claude Opus 5.5 (High)",
+      "family": "Anthropic Frontier",
+      "channel": "Cloud Agent",
+      "file": "benchmarks/results/aml_claude-opus-5-5-high.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.25,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.4333,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 4,
+          "pass_rate": 0.8,
+          "mean_score": 0.9,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 5,
+          "pass_rate": 1.0,
+          "mean_score": 1.0,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        }
+      }
+    },
+    {
+      "slug": "gemini-4-neon-high",
+      "display": "Gemini 4 Neon (High)",
+      "family": "Google Frontier",
+      "channel": "Cloud Agent",
+      "file": "benchmarks/results/aml_gemini-4-neon-high.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.3,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 1,
+          "pass_rate": 0.2,
+          "mean_score": 0.55,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 3,
+          "pass_rate": 0.6,
+          "mean_score": 0.8333,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 5,
+          "pass_rate": 1.0,
+          "mean_score": 1.0,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        }
+      }
+    },
+    {
+      "slug": "gpt-oss-120b-medium",
+      "display": "GPT-OSS 120B (Medium)",
+      "family": "OpenAI Open-Weight 120B",
+      "channel": "Cloud Agent",
+      "file": "benchmarks/results/aml_gpt-oss-120b-medium.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.0,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.2167,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.3333,
+              "raw_coverage": 0.3333,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频"
+              ],
+              "missed": [
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.3667,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.3333,
+              "raw_coverage": 0.3333,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频"
+              ],
+              "missed": [
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp"
+              ],
+              "missed": [
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 1,
+          "pass_rate": 0.2,
+          "mean_score": 0.3667,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.3333,
+              "raw_coverage": 0.3333,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频"
+              ],
+              "missed": [
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        }
+      }
+    },
+    {
+      "slug": "gemini-3.8-flash-medium",
+      "display": "Gemini 3.8 Flash (Medium)",
+      "family": "Google Fast Cloud",
+      "channel": "Cloud Agent",
+      "file": "benchmarks/results/aml_gemini-3.8-flash-medium.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.2,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.4833,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 2,
+          "pass_rate": 0.4,
+          "mean_score": 0.7333,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp"
+              ],
+              "missed": [
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 5,
+          "pass_rate": 1.0,
+          "mean_score": 1.0,
+          "hard_gate_violations": 0,
+          "mean_tokens": null,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": null
+        }
+      }
+    },
+    {
+      "slug": "qwen3.8-27b-local",
+      "display": "Qwen 3.8 27B (Local)",
+      "family": "Alibaba Local Dense",
+      "channel": "Ollama Local",
+      "file": "benchmarks/results/aml_qwen3.8-27b-local.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.2,
+          "hard_gate_violations": 0,
+          "mean_tokens": 943.0,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 1066,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "tokens": 1128,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "tokens": 769,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 903,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 849,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 54.8
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.5333,
+          "hard_gate_violations": 0,
+          "mean_tokens": 2378.6,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2441,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2309,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2126,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "工装照|截图"
+              ],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2349,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2668,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 35.89
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 3,
+          "pass_rate": 0.6,
+          "mean_score": 0.8,
+          "hard_gate_violations": 0,
+          "mean_tokens": 5162.6,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5334,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5030,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5038,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图"
+              ],
+              "missed": [
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5217,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5194,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 39.37
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 4,
+          "pass_rate": 0.8,
+          "mean_score": 0.9,
+          "hard_gate_violations": 0,
+          "mean_tokens": 4799.6,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 4941,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 4838,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 4627,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp"
+              ],
+              "missed": [
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 4668,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 4924,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 33.41
+        }
+      }
+    },
+    {
+      "slug": "qwen3.6-35b-a3b-local",
+      "display": "Qwen 3.6 35B-A3B (Local)",
+      "family": "Alibaba Local MoE",
+      "channel": "LM Studio MLX",
+      "file": "benchmarks/results/aml_qwen3.6-35b-a3b-local.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.3667,
+          "hard_gate_violations": 0,
+          "mean_tokens": 3242.6,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.3333,
+              "raw_coverage": 0.3333,
+              "outcome": "PARTIAL",
+              "matched": [
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3308,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3623,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁"
+              ],
+              "missed": [
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3354,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2680,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3248,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 34.54
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.4333,
+          "hard_gate_violations": 0,
+          "mean_tokens": 3905.4,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3874,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3624,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3125,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 4333,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 4571,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 23.7
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 2,
+          "pass_rate": 0.4,
+          "mean_score": 0.7833,
+          "hard_gate_violations": 0,
+          "mean_tokens": 6934.2,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 7630,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6727,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6078,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                ".hdf5|hdf5"
+              ],
+              "missed": [
+                "工装照|截图"
+              ],
+              "forbidden_hits": [],
+              "tokens": 7061,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 7175,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 27.15
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 4,
+          "pass_rate": 0.8,
+          "mean_score": 0.95,
+          "hard_gate_violations": 0,
+          "mean_tokens": 6404.8,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6750,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6200,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6414,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                ".hdf5|hdf5"
+              ],
+              "missed": [
+                "工装照|截图"
+              ],
+              "forbidden_hits": [],
+              "tokens": 6516,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 6144,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 23.89
+        }
+      }
+    },
+    {
+      "slug": "gpt-oss-20b-local",
+      "display": "GPT-OSS 20B (Local)",
+      "family": "OpenAI Local 20B",
+      "channel": "Ollama Local",
+      "file": "benchmarks/results/aml_gpt-oss-20b-local.jsonl",
+      "arms": {
+        "A0": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.15,
+          "hard_gate_violations": 0,
+          "mean_tokens": 2063.2,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 1586,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2473,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3154,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.0,
+              "raw_coverage": 0.0,
+              "outcome": "MISS",
+              "matched": [],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 1717,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "site-east",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 1386,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 36.31
+        },
+        "A1": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 0,
+          "pass_rate": 0.0,
+          "mean_score": 0.4167,
+          "hard_gate_violations": 0,
+          "mean_tokens": 2681.4,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.3333,
+              "raw_coverage": 0.3333,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频"
+              ],
+              "missed": [
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing",
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2477,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                "18%|超调"
+              ],
+              "missed": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后"
+              ],
+              "forbidden_hits": [],
+              "tokens": 3208,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [
+                "6.2 A|6.2A|退磁"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2160,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.25,
+              "raw_coverage": 0.25,
+              "outcome": "PARTIAL",
+              "matched": [
+                ".hdf5|hdf5"
+              ],
+              "missed": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                "工装照|截图"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2889,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 2673,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 17.32
+        },
+        "B": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 2,
+          "pass_rate": 0.4,
+          "mean_score": 0.7833,
+          "hard_gate_violations": 0,
+          "mean_tokens": 5877.2,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 6194,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "混叠|aliasing",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5447,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A",
+                "200 ms|200ms"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5255,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp",
+                ".hdf5|hdf5"
+              ],
+              "missed": [
+                "工装照|截图"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5957,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "site-east",
+                "峰峰值|p-p|peak-to-peak"
+              ],
+              "missed": [
+                "10s|10 s|10秒|10 秒",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "forbidden_hits": [],
+              "tokens": 6533,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 26.24
+        },
+        "C": {
+          "cases_evaluated": 5,
+          "cases_total": 5,
+          "pass_count": 1,
+          "pass_rate": 0.2,
+          "mean_score": 0.7333,
+          "hard_gate_violations": 0,
+          "mean_tokens": 5240.4,
+          "mean_turns": 1.0,
+          "results": [
+            {
+              "id": "EVAL-001",
+              "category": "trap",
+              "passed": false,
+              "score": 0.6667,
+              "raw_coverage": 0.6667,
+              "outcome": "PARTIAL",
+              "matched": [
+                "DCDC_ECO_PFM|PFM|轻载跳频",
+                "20kHz|20 kHz|奈奎斯特|混叠|aliasing"
+              ],
+              "missed": [
+                "re:(?:勿|不要|切勿|严禁|避免|别)[^。；\\n]{0,16}(?:改|调|动|修改)[^。；\\n]{0,10}pid|do\\s+not\\s+tune\\s+pid"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5097,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-002",
+              "category": "negative_result",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "anom-20261018-001|refuted|已证伪|负结果",
+                "1.4ms|1.4 ms|相位滞后",
+                "18%|超调"
+              ],
+              "missed": [
+                "混叠|aliasing"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5647,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-003",
+              "category": "hardware_safety",
+              "passed": false,
+              "score": 0.75,
+              "raw_coverage": 0.75,
+              "outcome": "PARTIAL",
+              "matched": [
+                "严禁|不允许|禁止|do not",
+                "6.2 A|6.2A|退磁",
+                "5.5 A|5.5A"
+              ],
+              "missed": [
+                "200 ms|200ms"
+              ],
+              "forbidden_hits": [],
+              "tokens": 4975,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-004",
+              "category": "intake_sop",
+              "passed": false,
+              "score": 0.5,
+              "raw_coverage": 0.5,
+              "outcome": "PARTIAL",
+              "matched": [
+                "sensor-rail-intake|sop-cal-sens|10Hz-500kHz|10 Hz-500 kHz|500kHz|500 kHz",
+                "0.5 mVpp|0.5mVpp"
+              ],
+              "missed": [
+                "工装照|截图",
+                ".hdf5|hdf5"
+              ],
+              "forbidden_hits": [],
+              "tokens": 5252,
+              "turns": 1
+            },
+            {
+              "id": "EVAL-005",
+              "category": "tenant_isolation",
+              "passed": true,
+              "score": 1.0,
+              "raw_coverage": 1.0,
+              "outcome": "PASS",
+              "matched": [
+                "site-east",
+                "10s|10 s|10秒|10 秒",
+                "峰峰值|p-p|peak-to-peak",
+                "0.30 um|0.30 μm|0.30um"
+              ],
+              "missed": [],
+              "forbidden_hits": [],
+              "tokens": 5231,
+              "turns": 1
+            }
+          ],
+          "mean_latency_s": 16.0
+        }
+      }
+    }
+  ]
+}

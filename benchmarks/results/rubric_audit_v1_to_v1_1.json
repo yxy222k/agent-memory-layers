@@ -1,0 +1,185 @@
+{
+  "note": "Pre-fix v1.0 snapshot vs v1.1 normalized Unicode/doc-wording grader",
+  "models": [
+    {
+      "slug": "claude-opus-5-5-high",
+      "display": "Claude Opus 5.5 (High)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.25,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.25
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.4333,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.4333
+        },
+        "B": {
+          "v1_0_pass": 2,
+          "v1_0_score": 0.7833,
+          "v1_1_pass": 4,
+          "v1_1_score": 0.9
+        },
+        "C": {
+          "v1_0_pass": 3,
+          "v1_0_score": 0.8833,
+          "v1_1_pass": 5,
+          "v1_1_score": 1.0
+        }
+      }
+    },
+    {
+      "slug": "gemini-4-neon-high",
+      "display": "Gemini 4 Neon (High)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.3,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.3
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.4833,
+          "v1_1_pass": 1,
+          "v1_1_score": 0.55
+        },
+        "B": {
+          "v1_0_pass": 2,
+          "v1_0_score": 0.7833,
+          "v1_1_pass": 3,
+          "v1_1_score": 0.8333
+        },
+        "C": {
+          "v1_0_pass": 3,
+          "v1_0_score": 0.8833,
+          "v1_1_pass": 5,
+          "v1_1_score": 1.0
+        }
+      }
+    },
+    {
+      "slug": "gpt-oss-120b-medium",
+      "display": "GPT-OSS 120B (Medium)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.0,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.0
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.2167,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.2167
+        },
+        "B": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.3167,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.3667
+        },
+        "C": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.2667,
+          "v1_1_pass": 1,
+          "v1_1_score": 0.3667
+        }
+      }
+    },
+    {
+      "slug": "gemini-3.8-flash-medium",
+      "display": "Gemini 3.8 Flash (Medium)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.2,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.2
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.4833,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.4833
+        },
+        "B": {
+          "v1_0_pass": 2,
+          "v1_0_score": 0.6833,
+          "v1_1_pass": 2,
+          "v1_1_score": 0.7333
+        },
+        "C": {
+          "v1_0_pass": 3,
+          "v1_0_score": 0.8833,
+          "v1_1_pass": 5,
+          "v1_1_score": 1.0
+        }
+      }
+    },
+    {
+      "slug": "qwen3.6-35b-a3b-local",
+      "display": "Qwen 3.6 35B-A3B (Local)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.3667,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.3667
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.4333,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.4333
+        },
+        "B": {
+          "v1_0_pass": 2,
+          "v1_0_score": 0.7333,
+          "v1_1_pass": 2,
+          "v1_1_score": 0.7833
+        },
+        "C": {
+          "v1_0_pass": 3,
+          "v1_0_score": 0.8333,
+          "v1_1_pass": 4,
+          "v1_1_score": 0.95
+        }
+      }
+    },
+    {
+      "slug": "gpt-oss-20b-local",
+      "display": "GPT-OSS 20B (Local)",
+      "arms": {
+        "A0": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.15,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.15
+        },
+        "A1": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.3667,
+          "v1_1_pass": 0,
+          "v1_1_score": 0.4167
+        },
+        "B": {
+          "v1_0_pass": 2,
+          "v1_0_score": 0.6833,
+          "v1_1_pass": 2,
+          "v1_1_score": 0.7833
+        },
+        "C": {
+          "v1_0_pass": 0,
+          "v1_0_score": 0.6833,
+          "v1_1_pass": 1,
+          "v1_1_score": 0.7333
+        }
+      }
+    }
+  ]
+}

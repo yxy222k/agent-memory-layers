@@ -324,6 +324,28 @@ class TestAmlAblationEval(unittest.TestCase):
         )
         self.assertEqual(rc_fail, 1)
 
+    def test_clause_normalization_handles_unicode_dash_micro_and_doc_wording(self) -> None:
+        cases = {str(c["id"]): c for c in aml.load_jsonl(EXAMPLE_HUB / "products" / "motion-stage" / "eval" / "cases.jsonl")}
+
+        res_001 = aml.grade_response(cases["EVAL-001"], "先查 DCDC_ECO_PFM 与 20 kHz 混叠，切勿盲目修改伺服 PID。")
+        self.assertTrue(res_001["passed"], res_001)
+
+        # Bare model advice that recommends tuning PID must NOT pass the negative-PID anchor
+        bad_001 = aml.grade_response(cases["EVAL-001"], "建议检查 DCDC_ECO_PFM 与 20 kHz 混叠，同时调整 PID 参数。")
+        self.assertFalse(bad_001["passed"], bad_001)
+
+        res_004 = aml.grade_response(
+            cases["EVAL-004"],
+            "按 [ref: sop-cal-sens] 核查 10\u202fHz\u202f–\u202f500\u202fkHz 纹波 < 0.5 mVpp，留存工装照、截图与 .hdf5。",
+        )
+        self.assertTrue(res_004["passed"], res_004)
+
+        res_005 = aml.grade_response(
+            cases["EVAL-005"],
+            "site\u2011east 按 10\u202fs 窗口 p\u2011p ≤ 0.30\u202f\u00b5m 验收。",
+        )
+        self.assertTrue(res_005["passed"], res_005)
+
 
 if __name__ == "__main__":
     unittest.main()

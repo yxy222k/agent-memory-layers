@@ -1,0 +1,20 @@
+{"id": "EVAL-001", "arm": "A0", "model": "gpt-oss-120b-medium", "turns": 1, "response": "首先检查位置反馈信号及闭环控制参数，确认编码器噪声或控制环带宽是否在 38 Hz 附近产生共振；其次检查驱动器的电流/电压闭环带宽和机械结构的固有频率，以排除硬件振动源。"}
+{"id": "EVAL-002", "arm": "A0", "model": "gpt-oss-120b-medium", "turns": 1, "response": "扩大滑动均值窗口能在一定程度上抑制 38 Hz 的抖动，因为窗口越大对应的低通截止频率越低。但窗口过大也会增加响应延迟，建议在实际控制频率下先仿真验证，再决定是否采用 32 点窗口。"}
+{"id": "EVAL-003", "arm": "A0", "model": "gpt-oss-120b-medium", "turns": 1, "response": "只有在驱动器和对应电机的额定电流 ≥ 6.5 A、散热能够承担额外功耗且电源能够提供足够电流时才可把峰值限流改为 6.5 A，否则会导致过热或失步。"}
+{"id": "EVAL-004", "arm": "A0", "model": "gpt-oss-120b-medium", "turns": 1, "response": "除了线性度，还需测量供电电压的精度、纹波与噪声水平以及温度漂移对供电的影响，确保传感器在工作电压范围内稳定。"}
+{"id": "EVAL-005", "arm": "A0", "model": "gpt-oss-120b-medium", "turns": 1, "response": "稳态定位抖动通常使用 RMS（均方根）值来表征，以反映抖动的能量水平；若需给出最坏情况可额外给出峰‑峰值，但报告主要应采用 RMS。"}
+{"id": "EVAL-001", "arm": "A1", "model": "gpt-oss-120b-medium", "turns": 1, "response": "应首先检查电源轨（模拟供电轨）的PFM跳频模式和供电噪声，确认是否因为电源管理芯片进入 38 Hz PFM 跳频导致保位抖动。"}
+{"id": "EVAL-002", "arm": "A1", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不能，仅扩大位置反馈滑动均值窗口至 32 点仍未消除 38 Hz 抖动，说明噪声来源非滤波窗口所能抑制。"}
+{"id": "EVAL-003", "arm": "A1", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不允许，当前文档规定短时峰值限流为 5.5 A（200 ms），将峰值限流改为 6.5 A 超出安全上限，需保持在规定范围内。"}
+{"id": "EVAL-004", "arm": "A1", "model": "gpt-oss-120b-medium", "turns": 1, "response": "除了线性度，还必须测量供电轨的噪声水平（RMS 噪声）以及是否出现 PFM 跳频等供电指标，确保供电稳定性。"}
+{"id": "EVAL-005", "arm": "A1", "model": "gpt-oss-120b-medium", "turns": 1, "response": "稳态定位抖动应按 RMS（均方根）值计算，反映长期平均的抖动幅度。"}
+{"id": "EVAL-001", "arm": "B", "model": "gpt-oss-120b-medium", "turns": 1, "response": "首先检查供电轨工作模式，确认是否仍在轻载 PFM 跳频模式并进行全工况频谱核查，必要时切回 LDO_LOCKED 以消除 38 Hz 伪振荡。"}
+{"id": "EVAL-002", "arm": "B", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不建议将滑动均值窗口从 4 点扩大到 32 点，实验表明该方式只能略微降低抖动且会引入额外 1.4 ms 群延迟，导致相位裕度下降和超调增大，无法根除 38 Hz 抖动。"}
+{"id": "EVAL-003", "arm": "B", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不允许将峰值限流提升至 6.5 A，文档中瞬时过流硬极限为 6.2 A，超过该值会触发硬件保护并可能损坏线圈。"}
+{"id": "EVAL-004", "arm": "B", "model": "gpt-oss-120b-medium", "turns": 1, "response": "除线性度外，还必须测量供电轨纹波频谱（10 Hz‑500 kHz）并记录本底噪声 RMS（约 0.038 um RMS），以及纹波幅值需小于 0.5 mVpp，以确保供电质量符合规范。"}
+{"id": "EVAL-005", "arm": "B", "model": "gpt-oss-120b-medium", "turns": 1, "response": "“稳态定位抖动”应采用 RMS（均方根）值进行计算和报告，符合文档中的标准度量方式。"}
+{"id": "EVAL-001", "arm": "C", "model": "gpt-oss-120b-medium", "turns": 1, "response": "首先检查模拟轨供电模式是否被切换为轻载 PFM，使用指令 `PMU:RAIL:ANALOG:MODE?` 确认返回 `LDO_LOCKED` 而非 `DCDC_ECO_PFM`。"}
+{"id": "EVAL-002", "arm": "C", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不能。将位置反馈滑动均值窗口从 4 点扩展到 32 点对抑制 38 Hz 振荡效果不佳，还会导致相位裕度下降和额外的群延迟。"}
+{"id": "EVAL-003", "arm": "C", "model": "gpt-oss-120b-medium", "turns": 1, "response": "不允许。#STAGE-X02 的瞬时过流/退磁硬极限为 6.2 A，设置 6.5 A 超出硬极限，违背安全包线。"}
+{"id": "EVAL-004", "arm": "C", "model": "gpt-oss-120b-medium", "turns": 1, "response": "除线性度外，还需测量供电轨的瞬时过压硬极限 (±6.50 V) 以及稳态饱和削顶阈值 (±5.20 V)，并记录本底噪声基线。"}
+{"id": "EVAL-005", "arm": "C", "model": "gpt-oss-120b-medium", "turns": 1, "response": "在 site-east 现场验收报告中，‘稳态定位抖动’应按 10 秒窗口内的峰峰值 (p‑p ≤ 0.30 µm) 计算，而非 RMS。"}

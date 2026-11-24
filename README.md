@@ -84,6 +84,30 @@ python3 scripts/aml.py eval \
 python3 -m unittest discover -s tests -v
 ```
 
+## Live Cross-Model Ablation Benchmark
+
+7 models across 4 families (cloud frontier, fast cloud, local 35B MoE via LM Studio, local 27B dense & 20B via Ollama) were evaluated in isolated fresh sessions with zero rubric/answer leakage across 4 memory configurations (`A0` Bare → `A1` Raw Transcripts → `B` Calib+Anom → `C` Full Dual-Axis AML; 5 high-discrimination cases; local endpoints at `temperature=0.0`, with `qwen3.8:27b` run at `think=false` after `think=true` timed out >90s on `A0`):
+
+![Cross-Model Memory Ablation Matrix](benchmarks/results/ablation_matrix.svg)
+
+| Model | Tier / Channel | A0 (Bare) | A1 (Transcripts) | B (Calib + Anom) | C (Full AML) | Delta (`C - A0`) |
+|---|---|---|---|---|---|---|
+| **Claude Opus 5.5 (High)** | Cloud Frontier | 0% (0/5 · 0.25) | 0% (0/5 · 0.43) | 80% (4/5 · 0.90) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Gemini 4 Neon (High)** | Cloud Frontier | 0% (0/5 · 0.30) | 20% (1/5 · 0.55) | 60% (3/5 · 0.83) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Gemini 3.8 Flash (Medium)** | Fast Cloud | 0% (0/5 · 0.20) | 0% (0/5 · 0.48) | 40% (2/5 · 0.73) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Qwen 3.8 27B (Local)** | Ollama Local (`think=false`, `T=0.0`) | 0% (0/5 · 0.20) | 0% (0/5 · 0.53) | 60% (3/5 · 0.80) | **80% (4/5 · 0.90)** | **+80 pp** |
+| **Qwen 3.6 35B-A3B (Local)** | LM Studio MLX | 0% (0/5 · 0.37) | 0% (0/5 · 0.43) | 40% (2/5 · 0.78) | **80% (4/5 · 0.95)** | **+80 pp** |
+| **GPT-OSS 20B (Local)** | Ollama Local | 0% (0/5 · 0.15) | 0% (0/5 · 0.42) | 40% (2/5 · 0.78) | 20% (1/5 · 0.73) | +20 pp |
+| **GPT-OSS 120B (Medium)** | Cloud Open-Weight | 0% (0/5 · 0.00) | 0% (0/5 · 0.22) | 0% (0/5 · 0.37) | 20% (1/5 · 0.37) | +20 pp |
+
+- **Key result**: With dual-axis AML memory (`C`), local **Qwen 3.6 35B-A3B** (`4/5`, `0.95`), local dense **Qwen 3.8 27B** (`think=false`, `4/5`, `0.90`, `3/5` already on Arm `B`), and fast **Gemini 3.8 Flash** (`5/5`, `1.00`) decisively outperform bare frontier models (`A0`: `0/5`, `0.25–0.30`) with **0 hard-gate violations**.
+- Full per-case traces, `v1.0 → v1.1` rubric audit, and desktop prompt pack: [`benchmarks/BENCHMARK_REPORT.md`](benchmarks/BENCHMARK_REPORT.md) · [`benchmarks/desktop_prompt_pack.md`](benchmarks/desktop_prompt_pack.md).
+
+```bash
+# Independently reproduce scores from recorded raw JSONL rollouts
+for f in benchmarks/results/aml_*.jsonl; do python3 scripts/aml.py eval --cases examples/precision-stage-hub/products/motion-stage/eval/cases.jsonl --responses "$f" -v; done
+```
+
 ## Documentation
 
 - [`docs/architecture.md`](docs/architecture.md) — Control plane, orthogonal dual-axis matrix, 5-level priority chain & state machine
@@ -184,6 +208,30 @@ python3 -m unittest discover -s tests -v
 ```
 
 ---
+
+## 跨模型实跑消融评测（Live Benchmark）
+
+在零参考答案泄漏、零跨组上下文污染的隔离条件下，对来自 4 个模型家族、横跨云端旗舰与本地开源的 7 个模型实跑了 4 组记忆消融实验（`A0` 裸模型 → `A1` 仅原始流水 → `B` 资产/SOP/排故 → `C` 完整双轴 AML 记忆；5 道高区分度陷阱与安全红线题；本地端点 `temperature=0.0`，其中 `qwen3.8:27b` 因 `think=true` 在 `A0` 探针超 90s 而固定为 `think=false`）：
+
+![跨模型记忆消融对比矩阵](benchmarks/results/ablation_matrix.svg)
+
+| 模型 | 规格 / 运行渠道 | A0 (裸模型) | A1 (仅原始流水) | B (标定+排故) | C (完整双轴 AML) | 净提升 (`C - A0`) |
+|---|---|---|---|---|---|---|
+| **Claude Opus 5.5 (High)** | 云端旗舰 | 0% (0/5 · 0.25) | 0% (0/5 · 0.43) | 80% (4/5 · 0.90) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Gemini 4 Neon (High)** | 云端旗舰 | 0% (0/5 · 0.30) | 20% (1/5 · 0.55) | 60% (3/5 · 0.83) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Gemini 3.8 Flash (Medium)** | 轻量云端 | 0% (0/5 · 0.20) | 0% (0/5 · 0.48) | 40% (2/5 · 0.73) | **100% (5/5 · 1.00)** | **+100 pp** |
+| **Qwen 3.8 27B (Local)** | 本地 Ollama (`think=false`, `T=0.0`) | 0% (0/5 · 0.20) | 0% (0/5 · 0.53) | 60% (3/5 · 0.80) | **80% (4/5 · 0.90)** | **+80 pp** |
+| **Qwen 3.6 35B-A3B (Local)** | 本地 LM Studio MLX | 0% (0/5 · 0.37) | 0% (0/5 · 0.43) | 40% (2/5 · 0.78) | **80% (4/5 · 0.95)** | **+80 pp** |
+| **GPT-OSS 20B (Local)** | 本地 Ollama | 0% (0/5 · 0.15) | 0% (0/5 · 0.42) | 40% (2/5 · 0.78) | 20% (1/5 · 0.73) | +20 pp |
+| **GPT-OSS 120B (Medium)** | 云端开源权重 | 0% (0/5 · 0.00) | 0% (0/5 · 0.22) | 0% (0/5 · 0.37) | 20% (1/5 · 0.37) | +20 pp |
+
+- **核心结论**：在完整双轴记忆加持下（`C` 组），本地 **Qwen 3.6 35B-A3B**（`4/5`、均分 `0.95`）、本地 **Qwen 3.8 27B**（`think=false`，`4/5`、均分 `0.90`，`B` 组已拿 `3/5`）与轻量 **Gemini 3.8 Flash**（`5/5`、均分 `1.00`）均大幅反超**裸跑云端旗舰**（`A0` 组 `0/5`、均分 `0.25–0.30`），且强门槛违规数为 **0**；同时如实暴露出 20B/120B 部分权重在多约束长上下文下的漏检边界。
+- 完整逐题结果、基于实测暴露的 `v1.0 → v1.1` 评分器假阴性审计与桌面端 Prompt 包：[`benchmarks/BENCHMARK_REPORT.md`](benchmarks/BENCHMARK_REPORT.md) · [`benchmarks/desktop_prompt_pack.md`](benchmarks/desktop_prompt_pack.md)。
+
+```bash
+# 使用未经修改的 scripts/aml.py eval 逐模型独立复现评分
+for f in benchmarks/results/aml_*.jsonl; do python3 scripts/aml.py eval --cases examples/precision-stage-hub/products/motion-stage/eval/cases.jsonl --responses "$f" -v; done
+```
 
 ## 目录与文档导航
 

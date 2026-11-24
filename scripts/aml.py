@@ -1387,22 +1387,49 @@ def cmd_dream(args: argparse.Namespace) -> int:
 # ---------------------------------------------------------------------------
 
 
+_CLAUSE_NORM_TABLE = str.maketrans(
+    {
+        "\u2010": "-",
+        "\u2011": "-",
+        "\u2012": "-",
+        "\u2013": "-",
+        "\u2014": "-",
+        "\u2212": "-",
+        "\u00a0": " ",
+        "\u202f": " ",
+        "\u2009": " ",
+        "\u3000": " ",
+        "\u00b5": "μ",
+    }
+)
+
+
+def _normalize_for_regex(text: str) -> str:
+    return re.sub(r"\s+", " ", text.translate(_CLAUSE_NORM_TABLE))
+
+
+def _normalize_literal(text: str) -> str:
+    norm = _normalize_for_regex(text)
+    return re.sub(r"\s*-\s*", "-", norm).lower()
+
+
 def _clause_matches(clause: str, text: str) -> bool:
     """Match a rubric anchor clause against response text.
 
     Supports:
       - `re:<pattern>` for explicit case-insensitive regular expressions
       - `<alt1>|<alt2>` pipe-separated lexical alternatives to avoid false negatives
-        from surface wording differences while keeping grading deterministic.
+        from surface wording or Unicode dash/space/micro differences while keeping
+        grading deterministic.
     """
     spec = clause.strip()
     if not spec:
         return True
     if spec.startswith("re:"):
-        return bool(re.search(spec[3:], text, flags=re.IGNORECASE))
-    norm_text = re.sub(r"\s+", " ", text).lower()
+        return bool(re.search(spec[3:], _normalize_for_regex(text), flags=re.IGNORECASE))
+    norm_text = _normalize_literal(text)
     for alt in spec.split("|"):
-        token = re.sub(r"\s+", " ", alt.strip()).lower()
+        token = _normalize_literal(alt.strip())
         if token and token in norm_text:
             return True
     return False
